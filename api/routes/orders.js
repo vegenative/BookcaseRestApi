@@ -9,8 +9,13 @@ router.get('/', (req,res,next) => {
 });
 //post
 router.post('/', (req,res,next) => {
+    const order = {
+        productId: req.body.productId,
+        ammount: req.body.ammount
+    }
     res.status(201).json({      //201 get created
-        message: 'Order was created'
+        message: 'Order was created',
+        order: order
     });
 });
 /////////////odrerId/////////
