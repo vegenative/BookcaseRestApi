@@ -23,8 +23,8 @@
 
 ---------------------------------------------
 ### Delete a library
-###### DELETE/library 
+###### DELETE/library/_libraryid
 
 ---------------------------------------------
 ### Add a book to library
-###### POST/library/_id
+###### POST/library/_bookid
