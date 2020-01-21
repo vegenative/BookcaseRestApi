@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const bookRoutes = require('./api/routes/books') //targetujemy 
 const libraryRoutes = require('./api/routes/library')
+const userRoutes = require('./api/routes/users')
 
 mongoose.connect('mongodb+srv://unth:'+ process.env.MONGO_ATLAS_PW +'@cluster0-p224k.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -18,8 +19,9 @@ app.use(bodyParser.json());
 
 
 // ROutes
-app.use('/books', bookRoutes); //wszystko co ma /books trafi do folderu
+app.use('/books', bookRoutes); 
 app.use('/library', libraryRoutes);
+app.use('/users', userRoutes);
 
 
 ////////errors//////////
