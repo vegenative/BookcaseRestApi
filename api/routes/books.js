@@ -2,14 +2,13 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Book = require('../models/product');
+const Book = require('../models/book');
 
 //Get request
 router.get('/', (req, res, next) => {
     Book.find()
     .exec()
-    .then(docs =>{
-        console.log(docs);
+    .then(docs => {
         if(docs.length >= 0){
             res.status(200).json(docs);
         }
@@ -29,17 +28,17 @@ router.get('/', (req, res, next) => {
 });
 // Post request
 router.post('/', (req, res, next)=>{
-    const product = new Book({
+    const book = new Book({
         _id: new mongoose.Types.ObjectId(), // unikatowe id
         title: req.body.title,
         author: req.body.author,
         price: req.body.price
     });
-    product.save().then(result =>{
+    book.save().then(result =>{
         console.log(result);
         res.status(201).json({
-            message: "POST request to /products",
-            createdProduct: result
+            message: "POST request to /books",
+            createdBook: result
         });
     })
     .catch(err => {
@@ -49,10 +48,10 @@ router.post('/', (req, res, next)=>{
         });
     });
 });
-/////////////productID/////////////////////////////
+/////////////bookID/////////////////////////////
 //Get
-router.get('/:productId', (req,res,next)=>{
-    const id = req.params.productId;
+router.get('/:bookId', (req,res,next)=>{
+    const id = req.params.bookId;
     Book.findById(id)
     .exec()
     .then(doc =>{
@@ -71,8 +70,8 @@ router.get('/:productId', (req,res,next)=>{
     });
 });
 //Patch
-router.patch('/:productId', (req,res,next)=>{
-    const id = req.params.productId;
+router.patch('/:bookId', (req,res,next)=>{
+    const id = req.params.bookId;
     const updateOps = {};
     for(const ops of req.body){
         updateOps[ops.propName] = ops.value;
@@ -92,8 +91,8 @@ router.patch('/:productId', (req,res,next)=>{
 
 });
 // delete
-router.delete('/:productId', (req,res,next)=>{
-    const id = req.params.productId;
+router.delete('/:bookId', (req,res,next)=>{
+    const id = req.params.bookId;
     Book.remove({
         _id:id
     })

@@ -4,8 +4,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const productRoutes = require('./api/routes/products') //targetujemy 
-const orderRoutes = require('./api/routes/orders')
+const bookRoutes = require('./api/routes/books') //targetujemy 
+const libraryRoutes = require('./api/routes/library')
 
 mongoose.connect('mongodb+srv://unth:'+ process.env.MONGO_ATLAS_PW +'@cluster0-p224k.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -18,8 +18,8 @@ app.use(bodyParser.json());
 
 
 // ROutes
-app.use('/products', productRoutes); //wszystko co ma /products trafi do folderu
-app.use('/orders', orderRoutes);
+app.use('/books', bookRoutes); //wszystko co ma /books trafi do folderu
+app.use('/library', libraryRoutes);
 
 
 ////////errors//////////
